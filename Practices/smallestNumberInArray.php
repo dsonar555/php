@@ -1,20 +1,17 @@
 <?php
 
-// function smallestNumber($array) {
-//     $smallerNumber=0;
-//     for($i=0; $i<count($array); $i++) {
-//         for($j=0; $j<count($array); $j++) {
-//             if( $array[$i] < $array[$j] ) {
-//                 echo "{$array[$i]}<br>";
-//                 $smallerNumber= $array[$i];
-//                 break;
-//             }
-//         }
-//     }
-//     return $smallerNumber;
-// }
-// $array = [6,3,8,5,9];
-// // echo count($array);
-// echo "smallest Number is : ".smallestNumber($array);
+function smallestNumber($array)
+{  
+    $smallerNumber = $array[0];
+    for($i=1; $i<count($array); $i++) {
+        if($smallerNumber > $array[$i]) {
+            $smallerNumber = $array[$i];
+        }        
+    }
+    return $smallerNumber;
+}
+$array = [4,35,0,1,8,90];
+print_r($array);
+echo '<br>Smallest number in array is : '.smallestNumber($array);
 
 ?>
