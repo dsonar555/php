@@ -5,7 +5,9 @@ if(isset($_POST['showCalendar'])) {
     $month = $_POST['month'];
     if(!empty($year) && !empty($month))
     {
-        if( preg_match('/^\d{0,4}$/',$year) && preg_match('/^\d{0,2}$/',$month) ) {
+        $monthValidation = ( ($month > 0) && ($month <= 12) && preg_match('/^\d{0,2}$/',$month) );
+        $yearValidation = ( preg_match('/^\d{0,4}$/',$year) && ($year > 0) && ($year <= 9999) );
+        if( $yearValidation  &&  $monthValidation ){
             $_SESSION['year'] = $year;
             $_SESSION['month'] = $month;
             list($begin, $end, $interval, $daterange) = setInterval($year, $month);
