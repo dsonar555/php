@@ -18,7 +18,7 @@ function validate() {
 	// echo $state.'<br>';
 	// print_r($contactMedium);
 	$isEmpty1 = (!empty($firstName) && !empty($lastName) && !empty($email) && !empty($phoneNo)&& !empty($password) && !empty($confirmPassword) );
-	$isEmpty2 = (!empty($addressLine1) && !empty($addressLine2) && !empty($postalCode) && !empty($country) && !empty($city) && !empty($state) ); 
+	$isEmpty2 = (!empty($addressLine1) && !empty($addressLine2) && !empty($postalCode) && !empty($country) && ($country!='select country') && !empty($city) && !empty($state) ); 
 	$isEmpty3 =  (!empty($aboutYourself) && !empty($contactMedium) );
 	if( $isEmpty1 && $isEmpty2 && $isEmpty3 ) {
 
