@@ -34,9 +34,9 @@ session_start();
             $_SESSION[$sectionName] = [];
         }
     }
-    function getSessionValues($sectionName, $fieldName)
+    function getSessionValues($sectionName, $fieldName,$returnType="")
     {
-        return (isset($_SESSION[$sectionName][$fieldName])) ? $_SESSION[$sectionName][$fieldName] : "";
+        return (isset($_SESSION[$sectionName][$fieldName])) ? $_SESSION[$sectionName][$fieldName] : $returnType;
     }
     function validate($fieldName,$fieldValue)
     {
