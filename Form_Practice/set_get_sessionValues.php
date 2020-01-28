@@ -8,19 +8,20 @@ session_start();
         setSessionValues('other');
     } 
     print_r( $_SESSION );
-
+    $error_array = [];
     function setSessionValues($sectionName)
     {
         if(isset($sectionName))
         {
-            $error_array = [];
+            global $error_array;
             foreach($_POST[$sectionName] as $fieldName => $fieldValue)
             {
                 if(!empty($fieldValue))
                 {
                     if(!validate($fieldName,$fieldValue))
                     {
-                        $error_array[$key] = ($fieldName == 'password')? 'Password and Confirm Password should be same.' : "Enter valid $fieldName.";
+                        $error_array[$fieldName] = ($fieldName == 'password')? 'Password and Confirm Password should be same.' : "Enter valid $fieldName.";
+                        print_r($error_array);
                     }
                 }
             }

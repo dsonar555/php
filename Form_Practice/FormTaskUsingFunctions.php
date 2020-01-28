@@ -27,6 +27,11 @@
                         <div>
                             <label>First Name:</label><br>
                             <input type="text" name="account[firstName]" value="<?= getSessionValues('account','firstName')?>">
+                            <span><?php
+                            if(array_key_exists('firstName',$error_array)) :
+                                echo $error_array['firstName']; 
+                            endif;
+                            ?></span>
                         </div>
                         <div>
                             <label>Last Name:</label><br>
@@ -145,7 +150,7 @@
                             <label>How do you like us to get in touch with you?</label><br>
                             <?php 
                             $contactMedium = ['Post', 'Email', 'SMS', 'Phone'];
-                            $checkedMediums = getSessionValues('other','contactMedium');
+                            $checkedMediums = getSessionValues('other','contactMedium',[]);
                             foreach ($contactMedium as $medium) :
                             $checked = (in_array($medium,$checkedMediums)) ? 'checked' : '';
                             ?>
