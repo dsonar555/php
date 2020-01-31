@@ -19,7 +19,7 @@ $result = getAllValues('account');
                 <th>Mobile No.</th>
                 <th>Email</th>
                 <th>Password</th>
-                <th>Operation</th>
+                <th colspan="2" >Operation</th>
             </tr>
             <?php while($row = mysqli_fetch_assoc($result)) :?>
             <tr>
@@ -30,6 +30,7 @@ $result = getAllValues('account');
                 <td><?=$row['mobileNo']?></td>
                 <td><?=$row['email']?></td>
                 <td><?=$row['password']?></td>
+                <td><a href="FormTaskUsingDatabase.php?customer_id=<?=$row['customer_id']?>">Edit</a></td>
                 <td><a href="FormTaskUsingDatabase.php?customer_id=<?=$row['customer_id']?>">Edit</a></td>
             </tr>
             <?php endwhile;?>

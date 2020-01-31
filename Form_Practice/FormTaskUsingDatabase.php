@@ -16,10 +16,9 @@
                             <select name="account[prefix]">
                             <?php
                                 foreach ($prefix as $value) :
-                                // $selected = (getSessionValues('account','prefix') == $value) ? 'Selected' : ""; 
+                                $selected = (getValues('account','prefix') == $value) ? 'selected' : ""; 
                             ?>
-                                <!-- <option value="<?// $value?>"<?//$selected?>><?// $value?></option> -->
-                                <option value="<?= $value?>"><?= $value?></option>
+                                <option value="<?=$value?>"<?=$selected?>><?= $value?></option>
                             <?php
                                 endforeach;
                             ?>
@@ -27,7 +26,7 @@
                         </div>
                         <div>
                             <label>First Name:</label><br>
-                            <input type="text" name="account[firstName]" value="" required>
+                            <input type="text" name="account[firstName]" value="<?=getValues('account','firstName')?>" required>
                             <span><?php
                             // if(array_key_exists('firstName',$error_array)) :
                             //     echo $error_array['firstName']; 
@@ -36,27 +35,27 @@
                         </div>
                         <div>
                             <label>Last Name:</label><br>
-                            <input type="text" name="account[lastName]" value="" required>
+                            <input type="text" name="account[lastName]" value="<?=getValues('account','lastName')?>" required>
                         </div>
                         <div>
                             <label>Birth Date:</label><br>
-                            <input type="date" name="account[birthDate]" value="">
+                            <input type="date" name="account[birthDate]" value="<?=getValues('account','birthDate')?>">
                         </div>
                         <div>
                             <label>Mobile No.:</label><br>
-                            <input type="text" name="account[mobileNo]" value="" required>
+                            <input type="text" name="account[mobileNo]" value="<?=getValues('account','mobileNo')?>" required>
                         </div>
                         <div>
                             <label>Email:</label><br>
-                            <input type="text" name="account[email]" value="" required>
+                            <input type="text" name="account[email]" value="<?=getValues('account','email')?>" required>
                         </div>
                         <div>
                             <label>Password:</label><br>
-                            <input type="password" name="account[password]" value="" required>
+                            <input type="password" name="account[password]" value="<?=getValues('account','password')?>" required>
                         </div>
                         <div>
                             <label>Confirm Password:</label><br>
-                            <input type="password" name="account[confirmPassword]" value="" required>
+                            <input type="password" name="account[confirmPassword]" value="<?=getValues('account','password')?>" required>
                         </div>
                     </fieldset>
                 </div>
@@ -65,23 +64,23 @@
                         <legend>Address Information</legend>
                         <div>
                             <label>Address Line 1:</label><br>
-                            <input type="text" name="address[addressLine1]" value="<? //getSessionValues('address','addressLine1')?>" required>
+                            <input type="text" name="address[addressLine1]" value="<?=getValues('address','address_line1')?>" required>
                         </div>
                         <div>
                             <label>Address Line 2:</label><br>
-                            <input type="text" name="address[addressLine2]" value="<?// getSessionValues('address','addressLine2') ?>" required>
+                            <input type="text" name="address[addressLine2]" value="<?= getValues('address','address_line2') ?>" required>
                         </div>
                         <div>
                             <label>Company:</label><br>
-                            <input type="text" name="address[company]" value="<?// getSessionValues('address','company')?>">
+                            <input type="text" name="address[company]" value="<?= getValues('address','company')?>">
                         </div>
                         <div>
                             <label>City:</label><br>
-                            <input type="text" name="address[city]" value="<?// getSessionValues('address', 'city')?>" required>
+                            <input type="text" name="address[city]" value="<?= getValues('address', 'city')?>" required>
                         </div>
                         <div>
                             <label>State:</label><br>
-                            <input type="text" name="address[state]" value="<?// getSessionValues('address','state')?>" required>
+                            <input type="text" name="address[state]" value="<?= getValues('address','state')?>" required>
                         </div>
                         <div>
                             <?php $countries = ['India', 'China', 'Canada', 'Nepal', 'Brazil'];
@@ -90,9 +89,9 @@
                             <select name="address[country]" required>
                             <?php 
                                 foreach ($countries as $aCountry) :
-                                    //$selected = (getSessionValues('address','country') == $aCountry) ? "Selected" : "";
+                                    $selected = (getValues('address','country') == $aCountry) ? "Selected" : "";
                                 ?>
-                                <option value="<?= $aCountry?>"<?// $selected?>><?= $aCountry?></option>
+                                <option value="<?= $aCountry?>"<?= $selected?>><?= $aCountry?></option>
                                 <?php
                                 endforeach;
                             ?>
@@ -100,7 +99,7 @@
                         </div>
                         <div>
                             <label>Postal Code</label><br>
-                            <input type="text" name="address[postalCode]" value="<? //getSessionValues('address','postalCode')?>" required>
+                            <input type="text" name="address[postalCode]" value="<?= getValues('address','postal_code')?>" required>
                         </div>
                     </fieldset>
                 </div>
@@ -112,7 +111,7 @@
                         <legend>Other Information</legend>
                         <div>
                             <label>Decsribe Yourself:</label><br>
-                            <textarea rows="5" cols="30" name="other[aboutYourself]" required><?// getSessionValues('other','aboutYourself')?></textarea>
+                            <textarea rows="5" cols="30" name="other[aboutYourself]" required><?= getValues('other','aboutYourself')?></textarea>
                         </div>
                         <!-- <div>
                             <label>Profile Image:</label><br>
@@ -128,20 +127,20 @@
                             ?>
                             <label>How long have you been in business?</label><br>
                             <?php foreach ($businessYears as $year) : 
-                                // $checked = (getSessionValues('other','businessYear') == $year) ? 'checked' : ''; 
+                                $checked = (in_array($year,getValues('other','businessYear',[]))) ? 'checked' : ''; 
                             ?>
-                            <input type="radio" name="other[businessYear]" value="<?= $year?>" <? //$checked?>><?=$year?><br>
+                            <input type="radio" name="other[businessYear]" value="<?= $year?>" <?=$checked?>><?=$year?><br>
                             <?php endforeach ?>
                         </div>
                         <div>
                             <label>Number of clients you see each week?</label><br>
-                            <select name="numberOfClients">
+                            <select name="other[numberOfClients]">
                                 <?php 
                                     $numberOfClients = ['1-5', '6-10', '11-15', '15+'];
                                     foreach ($numberOfClients as $clients):
-                                    // $selected = (getSessionValues('other','numberOfClients')) ? 'selected' : '' ;
+                                    $selected = (in_array($clients,getValues('other','numberOfClients',[]))) ? 'selected' : '' ;
                                 ?>
-                                <option value="<?=$clients?>" <?//$selected?>><?=$clients?></option>
+                                <option value="<?=$clients?>" <?=$selected?>><?=$clients?></option>
                                 <?php
                                     endforeach;
                                 ?>
@@ -151,11 +150,11 @@
                             <label>How do you like us to get in touch with you?</label><br>
                             <?php 
                             $contactMedium = ['Post', 'Email', 'SMS', 'Phone'];
-                            // $checkedMediums = getSessionValues('other','contactMedium',[]);
+                            $checkedMediums = getValues('other','contactMedium',[]);
                             foreach ($contactMedium as $medium) :
-                            // $checked = (in_array($medium,$checkedMediums)) ? 'checked' : '';
+                            $checked = (in_array($medium,$checkedMediums)) ? 'checked' : '';
                             ?>
-                            <input type="checkbox" name="other[contactMedium][]" value="<?=$medium?>" <?//$checked?>><?=$medium?><br>
+                            <input type="checkbox" name="other[contactMedium][]" value="<?=$medium?>" <?=$checked?>><?=$medium?><br>
                             <?php endforeach; ?>
                         </div>
                         <div>
@@ -163,11 +162,11 @@
                             <select name="other[hobbies][]" multiple>
                             <?php
                                 $hobbies = ['Listening to Music', 'Blogging', 'Travelling', 'Art','Sports']; 
-                                // $selectedHobbies = getSessionValues('other','hobbies');
+                                $selectedHobbies = getValues('other','hobbies');
                                 foreach ($hobbies as $aHobby) : 
-                                    // $selected = (in_array($aHobby,$selectedHobbies)) ? 'Selected' : '';
+                                    $selected = (in_array($aHobby,$selectedHobbies)) ? 'Selected' : '';
                             ?>
-                                <option value="<?=$aHobby?>"<?// $selected?>><?=$aHobby?></option>
+                                <option value="<?=$aHobby?>"<?=$selected?>><?=$aHobby?></option>
                             <?php
                                 endforeach;
                             ?>
