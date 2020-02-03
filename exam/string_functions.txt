@@ -1,0 +1,10 @@
+explode():
+
+it takes two arguments. first is delimeter and second is string we want to explode 
+means it will cut the string from the delimeters and returns an array of it.
+
+ex:
+$str = "hello how are you";
+$array = explode(" ",$str);
+
+O/P = ['hello','how','are','you'];
