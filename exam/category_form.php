@@ -1,5 +1,6 @@
 <?php 
 session_start();
+require_once 'get_set_categories.php';
 if(empty($_SESSION['user_id']))
 {
     header('location: login.php');
@@ -13,8 +14,9 @@ if(empty($_SESSION['user_id']))
 </head>
 <body>
 	<div>
+		<form method="POST" enctype="multipart/form-data">
 		<fieldset>
-			<legend>Blog Post</legend>
+			<legend>Categories</legend>
 			<div>
 				<label>Title</label><br>
 				<input type="text" name="category[title]" required>
@@ -39,12 +41,13 @@ if(empty($_SESSION['user_id']))
 			</div>
 			<div>
 				<label>Image</label><br>
-				<input type="file" name="category[image]">
+				<input type="file" name="image">
 			</div>
 			<div>
 				<input type="submit" name="addBlogPost" value="Add Blog Post">
 			</div>
 		</fieldset>
+		</form>
 	</div>
 </body>
 </html>

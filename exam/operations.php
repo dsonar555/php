@@ -1,5 +1,5 @@
 <?php
-require "databaseConnection.php";
+require_once "databaseConnection.php";
 
 $error_array = [];
 $data = [];
@@ -130,7 +130,12 @@ function setValues($sectionName,$operation,$user_id='')
                         return $id;
                     case 'category':
                         if($operation == 'insert') {
-                            $id = insert('category',$_POST['$sectionName']);
+                             $file = $_FILES['image'];
+                            $fileName = $file['name'];
+                            $data = category($_POST[$sectionName]);
+                            $data['image']="'uploads/$fileName'";
+                            print_r($data);
+                            $id = insert('category',$data);
                         }
                         else if($operation == 'update') {
                             $id = update('category',$category,'category_id',$user_id);
@@ -214,4 +219,31 @@ function getValues($sectionName, $fieldName,$returnType="")
         else 
         return 0;
     }
+    function category($sectionName)
+    {
+        $user=[];
+        foreach ($sectionName as $key => $value)
+        {
+            switch($key)
+            {
+                case 'title':
+                    $user['title'] = "'$value'";
+                    break;
+                case 'url': 
+                    $user['url'] = "'$value'";
+                    break;
+                case 'meta_tile': 
+                    $user['meta_tile'] = "'$value'";
+                    break;
+                case 'image': 
+                    $user['image'] = "'$value'";
+                    break;
+                case 'content':
+                    $user['content'] = "'$value'";
+                    break;                        
+            }
+        }
+        return $user;
+    }
+
 ?>
