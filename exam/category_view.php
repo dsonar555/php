@@ -1,5 +1,7 @@
 <?php 
 session_start();
+require "databaseConnection.php";
+
 if(empty($_SESSION['user_id']))
 {
     header('location: login.php');
@@ -11,7 +13,6 @@ if(isset($_GET['category_id']))
 	if($rows)
 		header('location: category_view.php');
 }
-require "databaseConnection.php";
 $result = fetchAll('category');
 require_once 'header.php';
 ?>
@@ -37,11 +38,11 @@ require_once 'header.php';
 				</tr>
 				<?php while($row = mysqli_fetch_assoc($result)) :?>
 				<tr>
-					<td><?=$row['category_id']?></td>
-					<td><img src="<?=$row['image']?>" width="100px" height="100px"></td>
+					<td><a href="viewData.php?category_id=<?=$row['category_id']?>"><?=$row['category_id']?></a></td>
+					<td><img src="<?=$row['image']?>" width="100px" height="50px"></td>
 					<td><?=$row['title']?></td>
 					<td><?=$row['created_at']?></td>
-					<td><a href="">edit</a></td>
+					<td><a href="category_form.php?category_id=<?=$row['category_id']?>">edit</a></td>
 					<td><a href="category_view.php?category_id=<?=$row['category_id']?>">delete</a></td>
 				</tr>
 				<?php endwhile; ?>

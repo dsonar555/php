@@ -8,6 +8,7 @@
 </head>
 <body>
 	<div>
+		<a href="blog_posts_view.php"><button>Manage Blog Posts</button></a>&nbsp
 		<a href="category_view.php"><button>Manage Category</button></a>&nbsp
 		<a href="registration.php?user_id=<?=$_SESSION['user_id']?>"><button>My Profile</button></a>&nbsp
 		<a href="logout.php"><button>Logout</button></a>

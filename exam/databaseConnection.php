@@ -12,11 +12,14 @@ function connectToDb($hostName, $dbUsername, $dbPassword, $databaseName)
 }
 $connection = connectToDb($hostName, $dbUsername, $dbPassword, $databaseName);
 
-function fetchAll($tableName, $serchOn=" '' ", $serchOnValue="''")
+function fetchAll($tableName,$searchOn=" '' ", $searchOnValue="''",$fields='*')
 {   
     global $connection;
     if($connection) {
-        $query = "SELECT * FROM $tableName WHERE $serchOn = $serchOnValue";
+        $condition='';
+        if($searchOn != " " && $searchOnValue!= null)
+            $condition = "WHERE $searchOn = $searchOnValue";
+        $query = "SELECT $fields FROM $tableName $condition";
         $result = mysqli_query($connection, $query);
         return $result;
     }
@@ -44,23 +47,12 @@ function fetchRow($tableName,$searchOn,$searchOnValue,$fields='*')
     }
 }
 
-function fetchAllUsingJoin()
-{
-    global $connection;
-    if($connection) 
-    {
-        $query = "SELECT C.customer_id, C.prefix, C.firstName, C.lastName, CA.city, CO.value AS aboutYourself, HOB.value AS hobbies FROM customers AS C LEFT JOIN customer_address AS CA on C.customer_id=CA.customer_id LEFT JOIN customer_additional_info AS CO on CO.customer_id = C.customer_id AND CO.field_key = 'aboutYourself' LEFT JOIN customer_additional_info AS HOB on HOB.customer_id = C.customer_id AND HOB.field_key='hobbies'";
-        $result = mysqli_query($connection, $query);
-        return $result;
-    }
-}
 function delete($tableName,$deleteOnName,$deleteOnValue)
 {
     global $connection;
     if($connection)
     {
         $query = "DELETE FROM $tableName WHERE $deleteOnName = $deleteOnValue";
-        // echo $query;
         mysqli_query($connection,$query);
         return mysqli_affected_rows($connection);
     }
@@ -74,8 +66,25 @@ function update($tableName,$data,$updateOnField,$updateOnValue,$condition='')
         $updateData .= "$key = $value, ";
     }
     $updateData = rtrim($updateData, ', ');
-    $query = "UPDATE $tableName SET $updateData WHERE $updateOnField = $updateOnValue $condition";
+    echo $query = "UPDATE $tableName SET $updateData WHERE $updateOnField = $updateOnValue $condition";
     mysqli_query($connection,$query);
     return mysqli_affected_rows($connection);
 }
+
+function fetchCategoryOf($post_id)
+{
+    global $connection;
+    if($connection)
+    {
+        $category = [];
+        $query = "SELECT C.title FROM category AS C LEFT JOIN category_post AS CP ON C.category_id = CP.category_id WHERE CP.post_id = $post_id";
+        $result = mysqli_query($connection,$query);$category = [];
+        while($row = mysqli_fetch_assoc($result))
+        {
+            array_push($category,$row['title']);
+        }
+        return $category;
+    }
+}
+
 ?>
