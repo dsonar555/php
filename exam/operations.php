@@ -76,8 +76,10 @@ function validate($fieldName,$fieldValue,$sectionName='',$operation='')
                 }
                 else 
                 {
-                    if($sectionName != 'login')
+                    
+                    if($sectionName != 'login' && $operation != 'update')
                     {
+                        echo $operation;
                         if(isUnique('user','email',"'$fieldValue'"))
                         return 1;
                         else
@@ -143,10 +145,11 @@ function setValues($sectionName,$operation,$user_id='')
                     case 'user':
                         $user = userData($_POST[$sectionName]);
                         if($operation == 'insert') {
+                            $user['created_at'] = '\''.date('Y-m-d H:i:s',time()).'\'';
                             $id = insert('user',$user);
                         }
                         else if($operation == 'update') {
-                            $user['updated_at'] = '\''.date('Y-m-d H:i:s').'\'';
+                            $user['updated_at'] = '\''.date('Y-m-d H:i:s',time()).'\'';
                             $id = update('user',$user,'user_id',$user_id);
                         }    
                         return $id;
@@ -156,11 +159,11 @@ function setValues($sectionName,$operation,$user_id='')
                             $data = category($_POST[$sectionName]);
                             $data['image']="'uploads/$fileName'";
                         if($operation == 'insert') {
-                            // print_r($data);
+                            $data['created_at'] = '\''.date('Y-m-d H:i:s',time()).'\'';
                             $id = insert('category',$data);
                         }
                         else if($operation == 'update') {
-                            $data['updated_at'] = '\''.date('Y-m-d H:i:s').'\'';
+                            $data['updated_at'] = '\''.date('Y-m-d H:i:s',time()).'\'';
                             $id = update('category',$data,'category_id',$user_id);
                         }    
                         return $id;
@@ -171,7 +174,7 @@ function setValues($sectionName,$operation,$user_id='')
                             $data = blogPostData($_POST[$sectionName]);
                             $data['image']="'uploads/$fileName'";
                         if($operation == 'insert') {
-                            // print_r($data);
+                            $data['created_at'] = '\''.date('Y-m-d H:i:s',time()).'\'';
                             $id = insert('blog_post',$data);
                             if($id)
                             {
@@ -304,7 +307,12 @@ function getValues($sectionName, $fieldName,$returnType="")
                     $user['content'] = "'$value'";
                     break;       
                 case 'parent_category':
-                    $user['parent_category_id'] = $value;                
+                    echo $value;
+                    if($value == '0')
+                        $user['parent_category_id'] = "NULL";
+                    else
+                        $user['parent_category_id'] = "$value";  
+                    break;              
             }
         }
         return $user;

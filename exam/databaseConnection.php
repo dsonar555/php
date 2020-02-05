@@ -31,7 +31,7 @@ function insert($tableName,$data)
     $values = implode(',',array_values($data)); 
     global $connection;
     if($connection) {
-        $query = "INSERT INTO $tableName ($fields) VALUES ($values)";
+        echo $query = "INSERT INTO $tableName ($fields) VALUES ($values)";
         mysqli_query($connection, $query); 
         return mysqli_insert_id($connection);
     } 
@@ -66,7 +66,7 @@ function update($tableName,$data,$updateOnField,$updateOnValue,$condition='')
         $updateData .= "$key = $value, ";
     }
     $updateData = rtrim($updateData, ', ');
-    echo $query = "UPDATE $tableName SET $updateData WHERE $updateOnField = $updateOnValue $condition";
+    $query = "UPDATE $tableName SET $updateData WHERE $updateOnField = $updateOnValue $condition";
     mysqli_query($connection,$query);
     return mysqli_affected_rows($connection);
 }
