@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Posts{% endblock %}
+
+{% block body %}
+    <h1>Posts</h1>
+    <table border="1">
+        <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Created At</th>
+        </tr>
+    {% for post in data %}
+        <tr>
+            <td>{{post.title}}</td>
+            <td>{{post.content}}</td>
+            <td>{{post.created_at}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}
