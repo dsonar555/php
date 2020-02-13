@@ -2,19 +2,31 @@
 {% block title %}Posts{% endblock %}
 
 {% block body %}
-    <h1>Posts</h1>
-    <table border="1">
-        <tr>
-            <th>Title</th>
-            <th>Content</th>
-            <th>Created At</th>
-        </tr>
-    {% for post in data %}
-        <tr>
-            <td>{{post.title}}</td>
-            <td>{{post.content}}</td>
-            <td>{{post.created_at}}</td>
-        </tr>
-    {% endfor %}
-    </table>
+    
+    <div>
+        <br><h1>Posts</h1><br>
+    </div>
+    <div>
+        <a class="btn btn-primary" href="{{base_url}}/Posts/addNew">Add New Post</a>
+    </div><br>
+
+    <div>
+        <table border="1" class="table table-hover">
+            <tr class="thead-dark">
+                <th scope="col">Title</th>
+                <th scope="col">Content</th>
+                <th scope="col">Created At</th>
+                <th colspan="2" scope="col">Actions</th>
+            </tr>
+        {% for post in data %}
+            <tr scope="row">
+                <td>{{post.title}}</td>
+                <td>{{post.content}}</td>
+                <td>{{post.created_at}}</td>
+                <td><a href=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+                <td><a href=""><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
 {% endblock %}

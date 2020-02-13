@@ -23,6 +23,13 @@ require '../vendor/autoload.php';
         require $root.'/'.str_replace('\\','/',$class).'.php';
     }
 }); */
+
+/**
+ * Error and Exception handling
+ */
+set_error_handler('Core\Error::errorHandler');
+set_exception_handler('Core\Error::exceptionHandler');
+
 /**
  * require the contoller class
  */

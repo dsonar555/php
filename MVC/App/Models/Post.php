@@ -17,6 +17,14 @@ class Post extends \Core\Model{
             echo $e->getMessage();
         }
     }
+    public static function insert($data) {
+        print_r($data);
+        $connect = static::connectDB();
+        $query = "INSERT INTO post (title,content) values (?,?)";
+        $result = $connect->prepare($query);
+        $result->execute(array_values($data));
+        return $result= $result->rowCount();
+    }
 }
 
 ?>

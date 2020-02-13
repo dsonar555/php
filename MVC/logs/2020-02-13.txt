@@ -1,0 +1,99 @@
+[13-Feb-2020 14:16:08 Asia/Kolkata] Uncaught exception : 'Exception'With Message : 'App\Controllers\Product controller not found'
+Get Stack trace :'#0 C:\xampp\htdocs\OwnFramework\public\index.php(73): Core\Router->dispatch('Product/index')
+#1 {main}'
+Trown in : 'C:\xampp\htdocs\OwnFramework\Core\Router.php' on line '126'
+[13-Feb-2020 14:49:39 Asia/Kolkata] Uncaught exception : 'Exception'With Message : 'No route matched'
+Get Stack trace :'#0 C:\xampp\htdocs\OwnFramework\public\index.php(73): Core\Router->dispatch('Products')
+#1 {main}'
+Trown in : 'C:\xampp\htdocs\OwnFramework\Core\Router.php' on line '129'
+[13-Feb-2020 14:49:46 Asia/Kolkata] Uncaught exception : 'Exception'With Message : 'Method addAction not found in controller App\Controllers\Home'
+Get Stack trace :'#0 C:\xampp\htdocs\OwnFramework\Core\Router.php(120): Core\Controller->__call('addAction', Array)
+#1 C:\xampp\htdocs\OwnFramework\public\index.php(73): Core\Router->dispatch('home/add')
+#2 {main}'
+Trown in : 'C:\xampp\htdocs\OwnFramework\Core\Controller.php' on line '22'
+[13-Feb-2020 14:52:07 Asia/Kolkata] Uncaught exception : 'Twig\Error\LoaderError'With Message : 'Unable to find template "Home/inde.html" (looked into: ../App/Views).'
+Get Stack trace :'#0 C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Loader\FilesystemLoader.php(131): Twig\Loader\FilesystemLoader->findTemplate('Home/inde.html')
+#1 C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Environment.php(261): Twig\Loader\FilesystemLoader->getCacheKey('Home/inde.html')
+#2 C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Environment.php(309): Twig\Environment->getTemplateClass('Home/inde.html')
+#3 C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Environment.php(277): Twig\Environment->load('Home/inde.html')
+#4 C:\xampp\htdocs\OwnFramework\Core\View.php(23): Twig\Environment->render('Home/inde.html', Array)
+#5 C:\xampp\htdocs\OwnFramework\App\Controllers\Home.php(14): Core\View::templateRender('Home/inde.html', Array)
+#6 [internal function]: App\Controllers\Home->indexAction()
+#7 C:\xampp\htdocs\OwnFramework\Core\Controller.php(18): call_user_func_array(Array, Array)
+#8 C:\xampp\htdocs\OwnFramework\Core\Router.php(120): Core\Controller->__call('indexAction', Array)
+#9 C:\xampp\htdocs\OwnFramework\public\index.php(73): Core\Router->dispatch('Home/index')
+#10 {main}'
+Trown in : 'C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Loader\FilesystemLoader.php' on line '227'
+[13-Feb-2020 15:06:04 Asia/Kolkata] Uncaught exception : 'Exception'With Message : 'No route matched'
+Get Stack trace :'#0 C:\xampp\htdocs\OwnFramework\public\index.php(73): Core\Router->dispatch('nvjdiiggrhr7678...')
+#1 {main}'
+Trown in : 'C:\xampp\htdocs\OwnFramework\Core\Router.php' on line '129'
+[13-Feb-2020 15:06:04 Asia/Kolkata] PHP Fatal error:  Uncaught Twig\Error\LoaderError: Unable to find template "404.html" (looked into: ../App/Views). in C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Loader\FilesystemLoader.php:227
+Stack trace:
+#0 C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Loader\FilesystemLoader.php(131): Twig\Loader\FilesystemLoader->findTemplate('404.html')
+#1 C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Environment.php(261): Twig\Loader\FilesystemLoader->getCacheKey('404.html')
+#2 C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Environment.php(309): Twig\Environment->getTemplateClass('404.html')
+#3 C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Environment.php(277): Twig\Environment->load('404.html')
+#4 C:\xampp\htdocs\OwnFramework\Core\View.php(23): Twig\Environment->render('404.html', Array)
+#5 C:\xampp\htdocs\OwnFramework\Core\Error.php(59): Core\View::templateRender('404.html')
+#6 [internal function]: Core\Error::exceptionHandler(Object(Exception))
+#7 {main}
+  thrown in C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Loader\FilesystemLoader.php on line 227
+[13-Feb-2020 15:07:02 Asia/Kolkata] Uncaught exception : 'Exception'With Message : 'No route matched'
+Get Stack trace :'#0 C:\xampp\htdocs\OwnFramework\public\index.php(73): Core\Router->dispatch('nvjdiiggrhr7678...')
+#1 {main}'
+Trown in : 'C:\xampp\htdocs\OwnFramework\Core\Router.php' on line '129'
+[13-Feb-2020 15:07:03 Asia/Kolkata] PHP Fatal error:  Uncaught Twig\Error\LoaderError: Unable to find template "404..html" (looked into: ../App/Views). in C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Loader\FilesystemLoader.php:227
+Stack trace:
+#0 C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Loader\FilesystemLoader.php(131): Twig\Loader\FilesystemLoader->findTemplate('404..html')
+#1 C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Environment.php(261): Twig\Loader\FilesystemLoader->getCacheKey('404..html')
+#2 C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Environment.php(309): Twig\Environment->getTemplateClass('404..html')
+#3 C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Environment.php(277): Twig\Environment->load('404..html')
+#4 C:\xampp\htdocs\OwnFramework\Core\View.php(23): Twig\Environment->render('404..html', Array)
+#5 C:\xampp\htdocs\OwnFramework\Core\Error.php(59): Core\View::templateRender('404..html')
+#6 [internal function]: Core\Error::exceptionHandler(Object(Exception))
+#7 {main}
+  thrown in C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Loader\FilesystemLoader.php on line 227
+[13-Feb-2020 15:07:16 Asia/Kolkata] Uncaught exception : 'Exception'With Message : 'No route matched'
+Get Stack trace :'#0 C:\xampp\htdocs\OwnFramework\public\index.php(73): Core\Router->dispatch('nvjdiiggrhr7678...')
+#1 {main}'
+Trown in : 'C:\xampp\htdocs\OwnFramework\Core\Router.php' on line '129'
+[13-Feb-2020 15:07:16 Asia/Kolkata] PHP Fatal error:  Uncaught Twig\Error\LoaderError: Unable to find template "404.html" (looked into: ../App/Views). in C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Loader\FilesystemLoader.php:227
+Stack trace:
+#0 C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Loader\FilesystemLoader.php(131): Twig\Loader\FilesystemLoader->findTemplate('404.html')
+#1 C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Environment.php(261): Twig\Loader\FilesystemLoader->getCacheKey('404.html')
+#2 C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Environment.php(309): Twig\Environment->getTemplateClass('404.html')
+#3 C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Environment.php(277): Twig\Environment->load('404.html')
+#4 C:\xampp\htdocs\OwnFramework\Core\View.php(23): Twig\Environment->render('404.html', Array)
+#5 C:\xampp\htdocs\OwnFramework\Core\Error.php(59): Core\View::templateRender('404.html')
+#6 [internal function]: Core\Error::exceptionHandler(Object(Exception))
+#7 {main}
+  thrown in C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Loader\FilesystemLoader.php on line 227
+[13-Feb-2020 15:08:32 Asia/Kolkata] Uncaught exception : 'Exception'With Message : 'No route matched'
+Get Stack trace :'#0 C:\xampp\htdocs\OwnFramework\public\index.php(73): Core\Router->dispatch('nvjdiiggrhr7678...')
+#1 {main}'
+Trown in : 'C:\xampp\htdocs\OwnFramework\Core\Router.php' on line '129'
+[13-Feb-2020 15:08:48 Asia/Kolkata] Uncaught exception : 'Exception'With Message : 'App\Controllers\Product controller not found'
+Get Stack trace :'#0 C:\xampp\htdocs\OwnFramework\public\index.php(73): Core\Router->dispatch('Product/index')
+#1 {main}'
+Trown in : 'C:\xampp\htdocs\OwnFramework\Core\Router.php' on line '126'
+[13-Feb-2020 15:08:48 Asia/Kolkata] PHP Fatal error:  Uncaught Twig\Error\SyntaxError: Unexpected "end" tag (expecting closing tag for the "block" tag defined near line 6). in C:\xampp\htdocs\OwnFramework\App\Views\500.html:8
+Stack trace:
+#0 C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\TokenParser\BlockTokenParser.php(45): Twig\Parser->subparse(Array, true)
+#1 C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Parser.php(182): Twig\TokenParser\BlockTokenParser->parse(Object(Twig\Token))
+#2 C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Parser.php(95): Twig\Parser->subparse(NULL, false)
+#3 C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Environment.php(479): Twig\Parser->parse(Object(Twig\TokenStream))
+#4 C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Environment.php(507): Twig\Environment->parse(Object(Twig\TokenStream))
+#5 C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Environment.php(348): Twig\Environment->compileSource(Object(Twig\Source))
+#6 C:\xampp\htdocs\OwnFramework\vendor\twig\twig\src\Environment.php(309): Twig\Environment->loadTemplate in C:\xampp\htdocs\OwnFramework\App\Views\500.html on line 8
+[13-Feb-2020 15:09:14 Asia/Kolkata] Uncaught exception : 'Exception'With Message : 'App\Controllers\Product controller not found'
+Get Stack trace :'#0 C:\xampp\htdocs\OwnFramework\public\index.php(73): Core\Router->dispatch('Product/index')
+#1 {main}'
+Trown in : 'C:\xampp\htdocs\OwnFramework\Core\Router.php' on line '126'
+[13-Feb-2020 17:38:58 Asia/Kolkata] Uncaught exception : 'PDOException'With Message : 'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'first post' for key 'title''
+Get Stack trace :'#0 C:\xampp\htdocs\OwnFramework\App\Models\Post.php(25): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\OwnFramework\App\Controllers\Posts.php(36): App\Models\Post::insert(Array)
+#2 C:\xampp\htdocs\OwnFramework\Core\Router.php(120): App\Controllers\Posts->addToDatabase()
+#3 C:\xampp\htdocs\OwnFramework\public\index.php(73): Core\Router->dispatch('Posts/addToData...')
+#4 {main}'
+Trown in : 'C:\xampp\htdocs\OwnFramework\App\Models\Post.php' on line '25'

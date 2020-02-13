@@ -6,6 +6,7 @@ use \Core\View;
 class Home extends \Core\Controller {
     public function indexAction() {
         // echo 'in index of'.get_class($this);
+        
         $data = ['name' => 'Divya',
         'colors' => ['Orange','Black','Grey','Blue'],
         'base_url'=> dirname($_SERVER['SCRIPT_NAME']) ];

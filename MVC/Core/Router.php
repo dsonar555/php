@@ -119,13 +119,14 @@ class Router {
                     // call_user_func_array([$obj,])
                     $obj->$action();
                 } else {
-                    echo "Method $action not found.";
+                    //echo "Method $action not found.";
+                    throw new \Exception("Method $action (in $controller controller) not found");
                 }
             } else {
-                echo "Controller class $controller not found.";
+                throw new \Exception("$controller controller not found");
             }
         } else {
-            echo "No route matched";
+            throw new \Exception("No route matched",404);
         }
     }
     function convertToStudlyCaps($string) {
