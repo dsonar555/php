@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Categories{%endblock%}
+
+{% block body %}
+{% set action = base_url~"/admin/categories/add"%}
+{% if data.category_id is defined %}
+{% set action = base_url~"/admin/categories/edit" %}
+{%endif%}
+<div>
+    <h1>Categories</h1>
+    <form action="{{action}}" method="post" enctype="multipart/form-data">
+        {% if data.category_id is defined %}
+        <div>
+            <input type="hidden" value="{{data.category_id}}" name="id">
+        </div>
+        {% endif %}
+
+        <div class="form-group">
+            <label>Name</label><br>
+            <input type="text" name="category[name]" value="{{data.name}}" class="form-control" >
+            <small class="form-text text-muted">{{error.name}}</small>
+        </div>
+
+        <div class="form-group">
+            <label>Image</label><br>
+            <input type="file" name="image" value="{{data.image}}" class="form-control" >
+            <small class="form-text text-muted">{{error.image}}</small>
+        </div>
+
+        <div class="form-group">
+            <label>Status</label><br>
+            <select name="category[status]" class="form-control">
+                <option value="1" {% if data.status == "1" %} selected {% endif %}>Available</option>
+                <option value="0" {% if data.status == "0" %} selected {% endif %}>Not Available</option>
+            </select>
+            <small class="form-text text-muted">{{error.status}}</small>
+        </div>
+        
+        <div class="form-group">
+            <label>Description</label><br>
+            <textarea rows="5" cols="40" name="category[description]" class="form-control" >{{data.description}}</textarea>
+            <small class="form-text text-muted">{{error.description}}</small>
+        </div>
+
+        <div>
+            <label>Parent Category</label><br>
+            <select name="category[parent_category_id]" class="form-control">
+                <option value="0">No any parent</option>
+                {% for category in category_names %}
+                {% set selected = (data.parent_category_id == category.category_id) ? "selected" : "" %}
+                <option value="{{category.category_id}}" {{ selected }}>{{category.name}}</option>
+                {% endfor %}
+            </select>
+            <small class="form-text text-muted">{{error.parent_category_id}}</small>
+        </div>
+
+        {% if data.category_id is null %}
+        <div class="form-group">
+            <input type="submit" value="Submit" name="submit" class="btn btn-dark">
+        </div>
+
+        {% else %}
+        <div class="form-group">
+            <input type="submit" value="Edit" name="edit" class="btn btn-dark">
+        </div>
+        {% endif %}
+    </form>
+</div>
+{% endblock %}

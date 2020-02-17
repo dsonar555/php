@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}Products{%endblock%}
+
+{% block body %}
+{% set action = base_url~"/admin/products/add"%}
+{% if data.product_id is defined %}
+{% set action = base_url~"/admin/products/edit" %}
+{%endif%}
+<div>
+    <form action="{{action}}" method="post" enctype="multipart/form-data">
+        {% if data.product_id is defined %}
+        <div>
+            <input type="hidden" value="{{data.product_id}}" name="id">
+        </div>
+        {% endif %}
+
+        <div class="form-group">
+            <label>Name</label><br>
+            <input type="text" name="product[name]" value="{{data.name}}" class="form-control" >
+            <small class="form-text text-muted">{{error.name}}</small>
+        </div>
+
+        <div class="form-group">
+            <label>SKU</label><br>
+            <input type="text" name="product[SKU]" value="{{data.sku}}" class="form-control" >
+            <small class="form-text text-muted">{{error.sku}}</small>
+        </div>
+
+        <div>
+            <label>Category</label><br>
+            <select name="product[category_id][]" class="form-control" multiple>
+                <option value="0">No any category</option>
+                {% for category in category_names %}
+                {% set selected = (category.category_id in data.category_id ) ? "selected" : "" %}
+                <option value="{{category.category_id}}" {{ selected }}>{{category.name}}</option>
+                {% endfor %}
+            </select>
+            <small class="form-text text-muted">{{error.category_id}}</small>
+        </div>
+
+        <div class="form-group">
+            <label>Image</label><br>
+            <input type="file" name="image" value="{{data.image}}" class="form-control" >
+            <small class="form-text text-muted">{{error.image}}</small>
+        </div>
+
+        <div class="form-group">
+            <label>Status</label><br>
+            <select name="product[status]" class="form-control">
+                <option value="1" {% if data.status == "1" %} selected {% endif %}>Available</option>
+                <option value="0" {% if data.status == "0" %} selected {% endif %}>Not Available</option>
+            </select>
+            <small class="form-text text-muted">{{error.status}}</small>
+        </div>
+        
+        <div class="form-group">
+            <label>Description</label><br>
+            <textarea rows="5" cols="40" name="product[description]" class="form-control" >{{data.description}}</textarea>
+            <small class="form-text text-muted">{{error.description}}</small>
+        </div>
+
+        <div class="form-group">
+            <label>Short Description</label><br>
+            <textarea rows="5" cols="40" name="product[short_desc]" class="form-control" >{{data.short_desc}}</textarea>
+            <small class="form-text text-muted">{{error.short_desc}}</small>
+        </div>
+
+        <div class="form-group">
+            <label>Price</label><br>
+            <input type="text" name="product[price]" value="{{data.price}}" class="form-control" >
+            <small class="form-text text-muted">{{error.price}}</small>
+        </div>
+
+        <div class="form-group">
+            <label>Stock</label><br>
+            <input type="text" name="product[stock]" value="{{data.stock}}" class="form-control" >
+            <small class="form-text text-muted">{{error.stock}}</small>
+        </div>
+
+        {% if data.product_id is null %}
+        <div class="form-group">
+            <input type="submit" value="Submit" name="submit" class="btn btn-dark">
+        </div>
+
+        {% else %}
+        <div class="form-group">
+            <input type="submit" value="Edit" name="edit" class="btn btn-dark">
+        </div>
+        {% endif %}
+    </form>
+</div>
+{% endblock %}

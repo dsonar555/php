@@ -1,0 +1,11 @@
+{% extends "main.html" %}
+{% block nav %}
+<nav>
+{% for link in url %}
+
+
+    <a href ="{{ base_url }}/{{link.url_key}}"  class="btn btn-primary" role = "button ">{{link.page_title}}</a>
+    
+{% endfor %}
+</nav>
+{% endblock %}

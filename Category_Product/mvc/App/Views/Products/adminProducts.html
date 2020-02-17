@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Products{% endblock %}
+
+{% block body %}
+    
+    <div>
+        <br><h1>Products</h1><br>
+    </div>
+    <div>
+        <a class="btn btn-primary" href="{{base_url}}/admin/products/add">Add New Products</a>
+    </div><br>
+
+    <div>
+        <table border="1" class="table table-hover">
+            <tr class="thead-dark">
+                <th scope="col">Name</th>
+                <th scope="col">SKU</th>
+                <th scope="col">Url Key</th>
+                <th scope="col">Image</th>
+                <th scope="col">Status</th>
+                <th scope="col">Description</th>
+                <th scope="col">Short Description</th>
+                <th scope="col">Price</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Created at</th>
+                <th colspan="2" scope="col">Actions</th>
+            </tr>
+        {% for product in data %}
+            <tr scope="row">
+                <td>{{product.name}}</td>
+                <td>{{product.sku}}</td>
+                <td>{{product.url_key}}</td>
+                <td>{{product.image}}</td>
+                <td>{{product.status}}</td>
+                <td>{{product.description}}</td>
+                <td>{{product.short_description}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.stock}}</td>
+                <td>{{product.created_at}}</td>
+                <td><a href="{{base_url}}/admin/products/edit/{{product.product_id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+                <td><a href="{{base_url}}/admin/products/delete/{{product.product_id}}"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+{% endblock %}

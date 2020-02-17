@@ -1,0 +1,26 @@
+{%extends "header.html"%}
+{% block body %}
+{% if categories is defined %}
+{% for parent in categories %}
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+     {{parent.name}}
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        {% for child in parent.child %}
+      <a class="dropdown-item" href="#">{{child.name}}</a>
+      {% endfor %}
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+<h1>{{data.page_title}}</h1>
+
+<p>{{data.content}}</p>
+
+{% for parent in categories %}
+{% for child in parent.child %}
+<li>{{child.name}}</li>
+{% endfor %}
+{% endfor %}
+{% endblock %}

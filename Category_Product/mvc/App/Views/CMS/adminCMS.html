@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}CMS{% endblock %}
+
+{% block body %}
+    
+    <div>
+        <br><h1>CMS</h1><br>
+    </div>
+    <div>
+        <a class="btn btn-primary" href="{{base_url}}/admin/cms/pages/add">Add New Page</a>
+    </div><br>
+
+    <div>
+        <table border="1" class="table table-hover">
+            <tr class="thead-dark">
+                <th scope="col">Title</th>
+                <th scope="col">Url Key</th>
+                <th scope="col">Status</th>
+                <th scope="col">Content</th>
+                <th scope="col">Created at</th>
+                <th colspan="2" scope="col">Actions</th>
+            </tr>
+        {% for cms in data %}
+            <tr scope="row">
+                <td>{{cms.page_title}}</td>
+                <td>{{cms.url_key}}</td>
+                <td>{{cms.status}}</td>
+                <td>{{cms.content}}</td>
+                <td>{{cms.created_at}}</td>
+                <td><a href="{{base_url}}/admin/cms/pages/edit/{{cms.cms_id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+                <td><a href="{{base_url}}/admin/cms/pages/delete/{{cms.cms_id}}"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+{% endblock %}

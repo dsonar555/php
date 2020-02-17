@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Products{%endblock%}
+
+{% block body %}
+{% set action = base_url~"/admin/cms/pages/add"%}
+{% if data.cms_id is defined %}
+{% set action = base_url~"/admin/cms/pages/edit" %}
+{%endif%}
+<div>
+    <form action="{{action}}" method="post" enctype="multipart/form-data">
+        {% if data.cms_id is defined %}
+        <div>
+            <input type="hidden" value="{{data.cms_id}}" name="id">
+        </div>
+        {% endif %}
+
+        <div class="form-group">
+            <label>Title</label><br>
+            <input type="text" name="cms[page_title]" value="{{data.page_title}}" class="form-control" >
+            <small class="form-text text-muted">{{error.page_title}}</small>
+        </div>
+
+        <div class="form-group">
+            <label>Status</label><br>
+            <select name="cms[status]" class="form-control">
+                <option value="1" {% if data.status == "1" %} selected {% endif %}>Available</option>
+                <option value="0" {% if data.status == "0" %} selected {% endif %}>Not Available</option>
+            </select>
+            <small class="form-text text-muted">{{error.status}}</small>
+        </div>
+        
+        <div class="form-group">
+            <label>Content</label><br>
+            <textarea rows="5" cols="40" name="cms[content]" class="form-control" >{{data.content}}</textarea>
+            <small class="form-text text-muted">{{error.content}}</small>
+        </div>
+
+        {% if data.cms_id is null %}
+        <div class="form-group">
+            <input type="submit" value="Submit" name="submit" class="btn btn-dark">
+        </div>
+
+        {% else %}
+        <div class="form-group">
+            <input type="submit" value="Edit" name="edit" class="btn btn-dark">
+        </div>
+        {% endif %}
+    </form>
+</div>
+{% endblock %}

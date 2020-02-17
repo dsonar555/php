@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Categories{% endblock %}
+
+{% block body %}
+    
+    <div>
+        <br><h1>Categories</h1><br>
+    </div>
+    <div>
+        <a class="btn btn-primary" href="{{base_url}}/admin/categories/add">Add New Category</a>
+    </div><br>
+
+    <div>
+        <table border="1" class="table table-hover">
+            <tr class="thead-dark">
+                <th scope="col">Name</th>
+                <th scope="col">Url Key</th>
+                <th scope="col">Image</th>
+                <th scope="col">Status</th>
+                <th scope="col">Description</th>
+                <th>Parent Category</th>
+                <th scope="col">Created at</th>
+                <th colspan="2" scope="col">Actions</th>
+            </tr>
+        {% for category in data %}
+            <tr scope="row">
+                <td>{{category.name}}</td>
+                <td>{{category.url_key}}</td>
+                <td>{{category.image}}</td>
+                <td>{% if category.status == 1 %}available
+                    {% else %}
+                    not available
+                    {% endif %}
+                </td>
+                <td>{{category.description}}</td>
+                <td>{% if category.parent is null %}
+                    No parent
+                    {% endif %}
+                    {{category.parent}}
+                </td>
+                <td><a href="{{base_url}}/admin/categories/edit/{{category.category_id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+                <td><a href="{{base_url}}/admin/categories/delete/{{category.category_id}}"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+{% endblock %}
