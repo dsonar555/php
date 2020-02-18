@@ -19,7 +19,7 @@ class View {
             $loader = new \Twig\Loader\FilesystemLoader('../App/Views');
             $twig = new \Twig\Environment($loader);
             $twig->addGlobal('base_url',Config::BASE_URL);
-            session_start();
+            
             $twig->addGlobal('session', $_SESSION);
             
         }

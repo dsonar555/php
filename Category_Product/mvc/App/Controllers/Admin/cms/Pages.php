@@ -19,8 +19,7 @@ class Pages extends \Core\Controller {
                 $data = $this->makeArray($data);
                 // print_r($data);
                 // die();
-                if(Page::insert($data))
-                {
+                if(Page::insert($data)) {
                     header('Location: '.Config::BASE_URL.'/admin/cms/pages/index');
                 }
             } else {
@@ -114,6 +113,16 @@ class Pages extends \Core\Controller {
     public function generateUrl($name) {
         return strtolower(str_replace(['& ',' '], ['','-'],($name)));
     } 
+
+    protected function before() {
+        
+        if(isset($_SESSION['admin'])) {
+            return TRUE;
+        } else {
+            header('Location: '.Config::BASE_URL.'/admin/admin/login');
+            return FALSE;
+        }
+    }
     
 }
 

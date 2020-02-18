@@ -123,7 +123,7 @@ class Products extends \Core\Controller {
                     View::templateRender('Products/addProductForm.html',['data'=> $_POST['product'],'error' => $this->error,'category_names' => $category_names]);
             }
         } else {
-            $data = Product::getRow($id);
+            $data = Product::getRow('product_id', $id);
             $category_names = Category::getAll('category_id,name');
             View::templateRender('Products/addProductForm.html',['category_names' => $category_names,'data'=> $data]);
         }
@@ -203,6 +203,16 @@ class Products extends \Core\Controller {
     public function generateUrl($name) {
         return strtolower(str_replace(['& ',' '], ['','-'],($name)));
     } 
+
+    protected function before() {
+        
+        if(isset($_SESSION['admin'])) {
+            return TRUE;
+        } else {
+            header('Location: '.Config::BASE_URL.'/admin/admin/login');
+            return FALSE;
+        }
+    }
 } 
 
 ?>

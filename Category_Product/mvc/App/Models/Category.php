@@ -5,7 +5,7 @@ namespace App\Models;
 use PDO;
 
 class Category extends \Core\Model{
-    public static function getAll($fields = '*') {
+    public static function getAll($fields = '*',$condition = '') {
 
         try {
             $connect = static::connectDB();
@@ -66,10 +66,10 @@ class Category extends \Core\Model{
             echo $e->getMessage();
         }
     }
-    public static function getRow($id) {
+    public static function getRow($field, $id) {
         try {
             $connect = static::connectDB();
-            $query = "SELECT * FROM categories WHERE category_id = $id LIMIT 1";
+            $query = "SELECT * FROM categories WHERE $field = '$id' LIMIT 1";
             $result = $connect->query($query);
             $result = $result->fetchALL(PDO::FETCH_ASSOC);
             return $result[0]; 

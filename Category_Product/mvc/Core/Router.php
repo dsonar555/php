@@ -30,7 +30,7 @@ class Router {
         /**
          * Convert variables e.g. {controller}
          */                                                  //(?P<\1>[a-z-]+)
-        $route = preg_replace('/\{([a-z]+)\}/','(?P<\1>[a-z-]+)',$route);
+        $route = preg_replace('/\{([a-z0-9]+)\}/','(?P<\1>[a-z0-9-]+)',$route);
         // echo htmlspecialchars($route);
         /**
          * Convert variables with custom regular expression e.g.{id:\d+}

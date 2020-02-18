@@ -26,7 +26,8 @@
             <tr scope="row">
                 <td>{{category.name}}</td>
                 <td>{{category.url_key}}</td>
-                <td>{{category.image}}</td>
+                <td><img src="{{base_url}}/uploads/Categories/{{category.image}}" height="100px" width="100px"></td>
+                <td></td>
                 <td>{% if category.status == 1 %}available
                     {% else %}
                     not available

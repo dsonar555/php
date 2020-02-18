@@ -1,0 +1,40 @@
+{% extends "main.html" %}
+
+{% block body %}
+{% include "header.html" %}
+{% if categories is defined %}
+<br>
+  {% for parent in categories %}
+  <div class="dropdown" style="float: left; margin-left: 10px;">
+      <a class="btn btn-secondary dropdown-toggle" href="" role="button" id="dropdownMenuLink-{{parent.category_id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{parent.name}}
+      </a>
+    
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-{{parent.category_id}}">
+        {% for child in parent.child %}
+       
+        <a class="dropdown-item" id="{{child.category_id}}" href="{{base_url}}/category/view/{{child.url_key}}">{{child.name}}</a>
+        {% endfor %}
+      
+      </div>
+       
+    </div>
+    {% endfor %}
+{% endif %}
+
+<div>
+    {% if productsData is defined %}
+    {% for product in productsData %}
+    <div class="card" style="width: 18rem; float:left;">
+        <img src="../../../public/uploads/Products/{{product.image}}" class="card-img-top" alt="..." height="300px" width="50px">
+        <div class="card-body">
+          <h5 class="card-title">{{product.name}}</h5>
+          <p class="card-text">{{product.price}}</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    {% endfor %}
+    {% endif %}
+
+</div>
+{% endblock %}

@@ -64,7 +64,7 @@ class Categories extends \Core\Controller {
                 View::templateRender('Categories/addCategoryForm.html',['data'=> $_POST['category'],'error' => $this->error]);
             }
         } else {
-            $data = Category::getRow($id);
+            $data = Category::getRow('category_id',$id);
             $category_names = Category::getAll('category_id,name');
             View::templateRender('Categories/addCategoryForm.html',['category_names' => $category_names,'data'=> $data]);
         }
@@ -164,6 +164,16 @@ class Categories extends \Core\Controller {
     public function generateUrl($name) {
         return strtolower(str_replace(['& ',' '], ['','-'],($name)));
     } 
+
+    protected function before() {
+        
+        if(isset($_SESSION['admin'])) {
+            return TRUE;
+        } else {
+            header('Location: '.Config::BASE_URL.'/admin/admin/login');
+            return FALSE;
+        }
+    }
 
 }
 

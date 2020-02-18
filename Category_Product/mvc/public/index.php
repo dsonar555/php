@@ -10,7 +10,7 @@
  * composer autoload
  */
 require '../vendor/autoload.php';
-
+session_start();
 /**
  * Autoloader
  */
@@ -45,13 +45,14 @@ $router = new Core\Router();
 $router->add('',['controller'=>'Main','action'=>'view','urlkey'=>'home']);
 $router->add('{urlkey}',['controller'=>'Main','action'=>'view']);
 $router->add('admin/{action}',['namespace' => 'Admin','controller'=>'Admin']);
+
 $router->add('{controller}/{action}/{id:\d+}');
 $router->add('{controller}/{action}');
 $router->add('admin/cms/{controller}/{action}',['namespace' => 'Admin\cms']);
 $router->add('admin/cms/{controller}/{action}/{id:\d+}',['namespace' => 'Admin\cms']);
 $router->add('admin/{controller}/{action}',['namespace' => 'Admin']);
 $router->add('admin/{controller}/{action}/{id:\d+}',['namespace' => 'Admin']);
-
+$router->add('{controller}/{action}/{urlkey}');
 
 $router->dispatch($_SERVER['QUERY_STRING']);
 

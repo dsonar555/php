@@ -1,26 +1,74 @@
-{%extends "header.html"%}
+{% extends "main.html" %}
+
 {% block body %}
+{% include "header.html" %}
 {% if categories is defined %}
-{% for parent in categories %}
-<div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-     {{parent.name}}
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+<br>
+  {% for parent in categories %}
+  <div class="dropdown" style="float: left; margin-left: 10px;">
+      <a class="btn btn-secondary dropdown-toggle" href="" role="button" id="dropdownMenuLink-{{parent.category_id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{parent.name}}
+      </a>
+    
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-{{parent.category_id}}">
         {% for child in parent.child %}
-      <a class="dropdown-item" href="#">{{child.name}}</a>
-      {% endfor %}
+       
+        <a class="dropdown-item" id="{{child.category_id}}" href="{{base_url}}/category/view/{{child.url_key}}">{{child.name}}</a>
+        {% endfor %}
+      
+      </div>
+       
     </div>
-</div>
-{% endfor %}
+    {% endfor %}
 {% endif %}
-<h1>{{data.page_title}}</h1>
 
-<p>{{data.content}}</p>
+<br><div>
+  <br>
+  <h1>{{data.page_title}}</h1>
 
-{% for parent in categories %}
-{% for child in parent.child %}
-<li>{{child.name}}</li>
-{% endfor %}
-{% endfor %}
+  <p>{{data.content}}</p>
+</div>
+
+<div>
+  {% if productsData is defined %}
+  {% for product in productsData %}
+  <div class="card" style="width: 10rem; float:left;">
+      <img src="{{base_url}}/public/uploads/Products/{{product.image}}" class="card-img-top" alt="..." height="300px" width="50px">
+      <div class="card-body">
+        <h5 class="card-title">{{product.name}}</h5>
+        <p class="card-text">{{product.price}}</p>
+        <a href="{{base_url}}/product/view/{{product.url_key}}" class="btn btn-primary">View Details</a>
+      </div>
+    </div>
+  {% endfor %}
+  {% endif %}
+  {% if product is defined %}
+
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="{{base_url}}/uploads/Products/{{product.image}}" class="card-img" alt="{{product.image}}">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h1 class="card-title">{{product.name}}</h1>
+          <h6 class="card-title">₹{{product.price}}</h6>
+          
+          <p class="card-text">{{product.short_description}}</p>
+          <form>
+            <div><input type="number" name="quantity" min="1" max="5" class="form-control"></div>
+            <div style="margin-top: 20px;"><input type="submit" name="BuyNow" value="Buy Now" class="btn btn-primary"><input type="button" name="addToCart" value="Add To Cart" class="btn btn-secondary"></div>
+          </form>
+          <p class="card-text">{{product.description}}</p>
+          
+          <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endif %}
+
+</div>
+
 {% endblock %}

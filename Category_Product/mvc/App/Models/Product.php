@@ -43,10 +43,10 @@ class Product extends \Core\Model{
             echo $e->getMessage();
         }
     }
-    public static function getRow($id) {
+    public static function getRow($field, $id) {
         try {
             $connect = static::connectDB();
-            $query = "SELECT * FROM products WHERE product_id = $id LIMIT 1";
+            $query = "SELECT * FROM products WHERE $field = '$id' LIMIT 1";
             $result = $connect->query($query);
             $result = $result->fetchALL(PDO::FETCH_ASSOC);
             $query = "SELECT C.category_id FROM products_categories PC LEFT JOIN categories C ON PC.category_id = C.category_id WHERE PC.product_id = $id";
@@ -82,14 +82,14 @@ class Product extends \Core\Model{
         }
     }
 
-    public static function getAllUsingJoin() {
+    public static function getProduct($field, $id) {
 
         try {
             $connect = static::connectDB();
-            $query = "";
+            $query = "SELECT * FROM products WHERE $field = '$id' LIMIT 1";
             $result = $connect->query($query);
             $result = $result->fetchALL(PDO::FETCH_ASSOC);
-            return $result; 
+            return $result[0];
         } catch(PDOException $e) {
             echo $e->getMessage();
         }

@@ -18,7 +18,6 @@ class Admin extends \Core\Controller {
         if($this->validate($_POST)) {
             if($_POST['email']=='ds@ds.com' && $_POST['password']=='Ds123') {
                 $this->showAlert("logged in");
-                session_start();
                 $_SESSION['admin'] = $_POST['email'];
                 header('Location: '.Config::BASE_URL.'/admin/admin/dashboard');
             }
@@ -27,7 +26,7 @@ class Admin extends \Core\Controller {
         }
     }
     public function dashboard() {
-        // if($this->isLoggedIn())
+        if($this->isLoggedIn())
             View::templateRender('Admin/dashboard.html');
 
     }
@@ -58,15 +57,12 @@ class Admin extends \Core\Controller {
     }
 
     public function logout() {
-        session_start();
         $_SESSION['admin'];
         session_destroy();
         header('Location: '.Config::BASE_URL.'/admin/admin/login');
     }
     public function isLoggedIn() {
-        // session_destroy();
-        // session_start();
-        $_SESSION['admin'];
+
         if(isset($_SESSION['admin'])) {
             return TRUE;
         } else {
