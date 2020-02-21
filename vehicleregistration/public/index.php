@@ -45,6 +45,7 @@ $router->add('',['controller'=>'Users','action'=>'login']);
 $router->add('{controller}/{action}/{id:\d+}');
 $router->add('{controller}/{action}');
 $router->add('admin/{controller}/{action}',['namespace' => 'Admin']);
+$router->add('admin/{controller}/{action}/{id:\d+}',['namespace' => 'Admin']);
 
  
 // /**

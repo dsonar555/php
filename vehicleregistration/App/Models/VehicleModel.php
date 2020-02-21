@@ -75,6 +75,24 @@ class VehicleModel extends \Core\Model {
         return $data;
     }
 
+    public static function update($data,$id) {
+        try {
+            $connect = static::connectDB();
+            $updateData = '';
+            foreach($data as $key =>$value )
+            {
+                $updateData .= "$key = $value, ";
+            }
+            $updateData = rtrim($updateData, ', ');
+            echo $query = "UPDATE service_registrations SET $updateData WHERE service_id= $id";
+            $result = $connect->prepare($query);
+            $result->execute();
+            return $result = $result->rowCount();
+        } catch(PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
 }
 
 ?>

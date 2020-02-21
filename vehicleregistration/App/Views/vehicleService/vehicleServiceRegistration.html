@@ -1,9 +1,19 @@
+
 {% extends "base.html" %}
 {% block body %}
 
+{% if data.service_id is defined %}
+{% set action = base_url ~'admin/admin/updateService'%}
+{% else %}
+{% set action = base_url ~'vehicle-service/newService'%}
+{% endif %}
+
 <div>
-    <form method="POST" action="{{base_url}}vehicle-service/newService">
+    <form method="POST" action="{{action}}">
         <div>
+            {% if data.service_id is defined %}
+            <input type="hidden" name="service_id" value="{{data.service_id}}"
+            {% endif %}
             <label>Title</label><br>
             <input type="text" name="title" value="{{data.title}}">
             <small>{{error.title}}</small>
@@ -48,27 +58,20 @@
             </select>
             <small>{{error.center}}</small>
         </div>
+        {% if data.service_id is defined %}
+        <div>
+            <input type="submit" name="edit" value="Edit Service">
+        </div>
+        {% else %}
         <div>
             <input type="submit" name="registerService" value="Register Service">
         </div>
+        {% endif %}
     </form>
     
 </div>
 
 <script type="text/javascript">
-{# 
-var dates = ["20/01/2018", "21/01/2018", "22/01/2018", "23/01/2018"];
- 
-function DisableDates(date) {
-    var string = jQuery.datepicker.formatDate('dd/mm/yy', date);
-    return [dates.indexOf(string) == -1];
-}
- 
-$(function() {
-     $("#date").datepicker({
-         beforeShowDay: DisableDates
-     });
-}); #}
 
 </script>
 
