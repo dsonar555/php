@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block body %}
+
+<div>
+    <form method="POST" action="{{base_url}}users/register">
+        <div>
+            <label>First Name</label><br>
+            <input type="text" name="user[first_name]">
+            <small>{{error.first_name}}</small>
+        </div>
+        <div>
+            <label>Last Name</label><br>
+            <input type="text" name="user[last_name]">
+            <small>{{error.last_name}}</small>
+        </div>
+        <div>
+            <label>Email</label><br>
+            <input type="text" name="user[email]">
+            <small>{{error.email}}</small>
+        </div>
+        <div>
+            <label>Password</label><br>
+            <input type="password" name="user[password]">
+        </div>
+        <div>
+            <label>Password</label><br>
+            <input type="password" name="user[confirmPassword]">
+            <small>{{error.password}}</small>
+        </div>
+        <div>
+            <label>Mobile Number</label><br>
+            <input type="text" name="user[mobile_number]">
+            <small>{{error.mobile_number}}</small>
+        </div>
+        <div>
+            <label>Street</label><br>
+            <input type="text" name="address[street]">
+            <small>{{error.street}}</small>
+        </div>
+        <div>
+            <label>City</label><br>
+            <input type="text" name="address[city]">
+            <small>{{error.city}}</small>
+        </div>
+        <div>
+            <label>State</label><br>
+            <input type="text" name="address[state]">
+            <small>{{error.state}}</small>
+        </div>
+        <div>
+            <label>Zipcode</label><br>
+            <input type="text" name="address[zipcode]">
+            <small>{{error.zipcode}}</small>
+        </div>
+        <div>
+            <label>Country</label><br>
+            <input type="text" name="address[country]">
+            <small>{{error.country}}</small>
+        </div>
+        <div>
+            <input type="submit" name="register" value="Register">
+        </div>
+    </form>
+    
+</div>
+
+{% endblock %}

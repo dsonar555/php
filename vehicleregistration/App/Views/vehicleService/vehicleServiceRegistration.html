@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block body %}
+
+<div>
+    <form method="POST" action="{{base_url}}vehicle-service/newService">
+        <div>
+            <label>Title</label><br>
+            <input type="text" name="title" value="{{data.title}}">
+            <small>{{error.title}}</small>
+        </div>
+        <div>
+            <label>Vehicle Number</label><br>
+            <input type="text" name="vehicle_number" value="{{data.vehicle_number}}">
+            <small>{{error.vehicle_number}}</small>
+        </div>
+        <div>
+            <label>License Number</label><br>
+            <input type="text" name="license_number" value="{{data.license_number}}">
+            <small>{{error.license_number}}</small>
+        </div>
+        <div>
+            <label>Date</label><br>
+            <input type="date" name="date" value="{{data.date}}">
+            <small>{{error.date}}</small>
+        </div>
+        <div>
+            <label>Timeslot</label><br>
+            {% set timeslotArray = ['9-10','10-11','11-12','12-1','1-2','2-3','3-4','4-5','5-6'] %}
+            <select name="timeslots">
+                {% for slot in timeslotArray %}
+                <option value="{{slot}}">{{slot}}</option>
+                {% endfor %}
+            </select>
+            <small>{{error.timeslots}}</small>
+        </div>
+        <div>
+            <label>Vehicle Issue</label><br>
+            <textarea name="issue" rows="5" cols="30">{{data.issue}}</textarea>
+            <small>{{error.issue}}</small>
+        </div>
+        <div>
+            {% set serviceCenters = ['gurukul','paldi','law garden'] %}
+            <label>Service Center</label><br>
+            <select name="center">
+                {% for center in serviceCenters %}
+                <option value="{{center}}">{{center}}</option>
+                {% endfor %}
+            </select>
+            <small>{{error.center}}</small>
+        </div>
+        <div>
+            <input type="submit" name="registerService" value="Register Service">
+        </div>
+    </form>
+    
+</div>
+
+<script type="text/javascript">
+{# 
+var dates = ["20/01/2018", "21/01/2018", "22/01/2018", "23/01/2018"];
+ 
+function DisableDates(date) {
+    var string = jQuery.datepicker.formatDate('dd/mm/yy', date);
+    return [dates.indexOf(string) == -1];
+}
+ 
+$(function() {
+     $("#date").datepicker({
+         beforeShowDay: DisableDates
+     });
+}); #}
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block body %}
+
+<div>
+    <form method="POST" action="{{base_url}}users/login">
+        <div>
+            <label>Email</label><br>
+            <input type="text" name="email">
+            <small>{{error.email}}</small>
+        </div>
+        <div>
+            <label>Password</label><br>
+            <input type="password" name="password">
+            <small>{{error.password}}</small>
+        </div>
+        <div>
+            <input type="submit" name="login" value="Login">
+        </div>
+    </form>
+    <div>
+        <h3 style="color: red;">{{msg}}</h3>
+    </div>
+    <div>
+        <a href="{{base_url}}users/register"><button>Register</button></a>
+    </div>
+</div>
+
+{% endblock %}

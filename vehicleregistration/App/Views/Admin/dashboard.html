@@ -1,0 +1,54 @@
+
+{% extends "base.html" %}
+{% block body %}
+
+    {% if session.user_id is defined %}
+
+        <h3>Welcome</h3>
+
+        <a href="{{base_url}}vehicle-service/new-service"><button>Register Service</button></a>
+
+        {% if serviceData is defined %}
+            <div>
+                <table border="1">
+                    <tr>
+                        <th>User</th>
+                        <th>Title</th>
+                        <th>Vehicle Number</th>
+                        <th>License Number</th>
+                        <th>Date</th>
+                        <th>Timeslot</th>
+                        <th>Issue</th>
+                        <th>Center</th>
+                        <th>Status</th>
+                        <th colspan="2">Actions</th>
+                    </tr>
+                {% for service in serviceData %}
+                    <tr>
+                        <td>{{service.first_name}} {{service.last_name}}</td>
+                        <td>{{service.title}}</td>
+                        <td>{{service.vehicle_number}}</td>
+                        <td>{{service.license_number}}</td>
+                        <td>{{service.date}}</td>
+                        <td>{{service.timeslots}}</td>
+                        <td>{{service.issue}}</td>
+                        <td>{{service.center}}</td>
+                        <td>{% if service.status == 1 %}
+                            Approved
+                            {% else %}
+                            Not Approved
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        {% else %}
+            <h3>No Registered Services...</h3>
+        {% endif %}
+
+    {% else %}
+
+    {% endif %}
+{% endblock %}
